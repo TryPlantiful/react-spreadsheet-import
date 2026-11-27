@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["src/**/tests", "src/**/stories"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "types",
+    "noEmit": false,
+    "outDir": ".build",
+    "rootDir": "src"
+  }
+}
