@@ -1,7 +1,11 @@
-import { test } from '@playwright/test';
+import { expect, test } from "@playwright/test"
 
-test('has title', async ({ page }) => {
-  await page.goto('http://localhost:6006/iframe.html?args=&id=select-header-step--basic&viewMode=story');
+test("selects a spreadsheet header row", async ({ page }) => {
+  await page.goto("/iframe.html?id=select-header-step--basic&viewMode=story")
 
-  await page.getByRole('row', ).filter({ hasText: 'second' }).click();
-});
+  const row = page.getByRole("row").filter({ hasText: "second" })
+  const selector = row.getByRole("radio")
+  await expect(selector).not.toBeChecked()
+  await row.click()
+  await expect(selector).toBeChecked()
+})

@@ -583,11 +583,8 @@ describe("Validation step tests", () => {
     })
     await userEvent.click(lastNameCell)
 
-    const newOption = screen.getByRole("button", {
-      name: OPTIONS[1].label,
-    })
-    await userEvent.click(newOption)
-    expect(newOption).not.toBeInTheDocument()
+    await userEvent.type(screen.getByRole("combobox"), OPTIONS[1].label, { skipClick: true })
+    await userEvent.keyboard("{Enter}")
 
     const newLastName = screen.getByRole("gridcell", {
       name: OPTIONS[1].label,
